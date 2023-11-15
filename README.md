@@ -9,6 +9,8 @@ For the first generation, see [node-shellies](https://github.com/alexryd/node-sh
 
 * [Shelly Plus 1](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus1)
 * [Shelly Plus 1 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus1PM)
+* [Shelly Plus 1 (Mini)](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus1)
+* [Shelly Plus 1 PM (Mini)](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus1PM)
 * [Shelly Plus 2 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus2PM)
 * [Shelly Plus I4](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlusI4)
 * [Shelly Plus Plug US](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlugUS)
