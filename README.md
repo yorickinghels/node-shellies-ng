@@ -1,7 +1,7 @@
 # node-shellies-ds9
 [![npm-version](https://badgen.net/npm/v/shellies-ds9)](https://www.npmjs.com/package/shellies-ds9)
 
-Handles communication with the next generation of Shelly devices. This Package is only to pimp up the existing package https://badgen.net/npm/v/shellies-ng. 
+Handles communication with the next generation of Shelly devices. This Package is only to pimp up the existing package https://badgen.net/npm/v/shellies-ng. Because I'm lost if my Minis don't run in the Homebridge.
 If Alex creates a new version of his package that supports the Mini devices, I will delete this package again
 
 For the first generation, see [node-shellies](https://github.com/alexryd/node-shellies).
