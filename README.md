@@ -1,5 +1,5 @@
-# node-shellies-ng
-[![npm-version](https://badgen.net/npm/v/shellies-ng)](https://www.npmjs.com/package/shellies-ng)
+# node-shellies-ds9
+[![npm-version](https://badgen.net/npm/v/shellies-ds9)](https://www.npmjs.com/package/shellies-ds9)
 
 Handles communication with the next generation of Shelly devices. This Package is only to pimp up the existing package https://badgen.net/npm/v/shellies-ng. 
 If Alex creates a new version of his package that supports the Mini devices, I will delete this package again
