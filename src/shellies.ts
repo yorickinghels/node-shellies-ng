@@ -3,7 +3,6 @@ import EventEmitter from 'eventemitter3';
 import { Device, DeviceId } from './devices';
 import { DeviceDiscoverer, DeviceIdentifiers } from './discovery';
 import {
-  OutboundWebSocketServer,
   RpcHandler,
   WebSocketRpcHandlerFactory,
   WebSocketRpcHandlerOptions,
@@ -21,10 +20,10 @@ export interface DeviceOptions {
   /**
    * The protocol to use when communicating with the device.
    */
-  protocol?: 'websocket' | 'outboundWebsocket';
+  protocol: 'websocket';
   /**
    * The password to use if the Shelly device requires authentication.
-   * This is used with inbound WebSocket connections.
+   * This is used with WebSocket connections.
    */
   password?: string;
 }
@@ -34,6 +33,7 @@ export interface DeviceOptions {
  */
 const DEFAULT_DEVICE_OPTIONS: Readonly<DeviceOptions> = {
   exclude: false,
+  protocol: 'websocket',
 };
 
 /**
@@ -50,10 +50,6 @@ export interface ShelliesOptions {
    * Configuration options for WebSockets.
    */
   websocket?: WebSocketRpcHandlerOptions;
-  /**
-   * An instance of a WebSocket server, that will be used when communication over so called Outbound WebSockets.
-   */
-  websocketServer?: OutboundWebSocketServer;
   /**
    * Whether the status should be loaded automatically for discovered devices.
    */
@@ -111,14 +107,9 @@ export class Shellies extends EventEmitter<ShelliesEvents> {
   readonly websocket = new WebSocketRpcHandlerFactory();
 
   /**
-   * The server used to handle Outbound WebSockets.
-   */
-  readonly websocketServer: OutboundWebSocketServer | null;
-
-  /**
    * Holds configuration options for this class.
    */
-  protected readonly options: ShelliesOptions;
+  protected options: ShelliesOptions;
 
   /**
    * Holds all devices, mapped to their IDs for quick and easy access.
@@ -149,14 +140,6 @@ export class Shellies extends EventEmitter<ShelliesEvents> {
 
     // store the options, with default values
     this.options = { ...DEFAULT_SHELLIES_OPTIONS, ...(opts || {}) };
-
-    // store the WebSocket server
-    this.websocketServer = this.options.websocketServer ?? null;
-
-    // if we have a server, register it as a device discoverer
-    if (this.websocketServer !== null) {
-      this.registerDiscoverer(this.websocketServer);
-    }
   }
 
   /**
@@ -320,24 +303,14 @@ export class Shellies extends EventEmitter<ShelliesEvents> {
    * @param options - Configuration options for the device.
    */
   protected createRpcHandler(identifiers: DeviceIdentifiers, options: DeviceOptions): RpcHandler {
-    // determine what protocol to use
-    const protocol = options.protocol ?? identifiers.protocol;
-
-    if (protocol === 'outboundWebsocket') {
-      // make sure we have a WebSocket server
-      if (this.websocketServer === null) {
-        throw new Error(`No WebSocket server has been configured (device ID: ${identifiers.deviceId})`);
-      }
-
-      return this.websocketServer.getRpcHandler(identifiers.deviceId);
-    } else if (protocol === 'websocket' && identifiers.hostname) {
+    if (options.protocol === 'websocket' && identifiers.hostname) {
       const opts = { ...this.options.websocket, password: options.password };
       return this.websocket.create(identifiers.hostname, opts);
     }
 
     // we're missing something
     throw new Error(
-      `Missing required device identifier(s) (device ID: ${identifiers.deviceId}, protocol: ${protocol})`,
+      `Missing required device identifier(s) (device ID: ${identifiers.deviceId}, protocol: ${options.protocol})`,
     );
   }
 
@@ -354,11 +327,6 @@ export class Shellies extends EventEmitter<ShelliesEvents> {
 
     // get the configuration options for this device
     const opts = this.getDeviceOptions(deviceId);
-
-    if (opts.protocol && opts.protocol !== identifiers.protocol) {
-      // ignore if the available protocol doesn't match the requested protocol
-      return;
-    }
 
     if (opts.exclude) {
       // exclude this device
