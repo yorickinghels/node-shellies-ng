@@ -97,7 +97,7 @@ type ShelliesEvents = {
 };
 
 /**
- * This is the main class for the shellies-ng library.
+ * This is the main class for the shellies-ds9 library.
  * This class manages a list of Shelly devices. New devices can be added by registering a device discoverer.
  */
 export class Shellies extends EventEmitter<ShelliesEvents> {

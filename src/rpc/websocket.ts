@@ -412,7 +412,7 @@ export class WebSocketRpcHandlerFactory {
    * Default `WebSocketRpcHandler` options.
    */
   readonly defaultOptions: WebSocketRpcHandlerOptions = {
-    clientId: 'node-shellies-ng-' + Math.round(Math.random() * 1000000),
+    clientId: 'node-shellies-ds9-' + Math.round(Math.random() * 1000000),
     requestTimeout: 10,
     pingInterval: 60,
     reconnectInterval: [
