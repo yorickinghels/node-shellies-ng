@@ -1,6 +1,7 @@
 export * from './base';
 
 export * from './shelly-plus-1';
+export * from './shelly-plus-pm';
 export * from './shelly-plus-1-pm';
 export * from './shelly-plus-2-pm';
 export * from './shelly-plus-ht';
