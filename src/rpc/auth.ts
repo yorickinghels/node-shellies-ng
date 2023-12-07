@@ -1,10 +1,10 @@
-import crypto from 'crypto';
+import crypto from "crypto";
 import {
   JSONRPCClient,
   JSONRPCRequest,
   JSONRPCResponse,
   SendRequest,
-} from 'json-rpc-2.0';
+} from "json-rpc-2.0";
 
 /**
  * Authentication challenge parameters sent by the server when a protected resource is requested.
@@ -26,7 +26,7 @@ export interface RpcAuthResponse {
   nonce: number;
   cnonce: number;
   response: string;
-  algorithm: 'SHA-256';
+  algorithm: "SHA-256";
 }
 
 /**
@@ -39,7 +39,9 @@ export interface JSONRPCRequestWithAuth extends JSONRPCRequest {
 /**
  * Extends JSONRPCClient to seamlessly handle authentication.
  */
-export class JSONRPCClientWithAuthentication<ClientParams = void> extends JSONRPCClient<ClientParams> {
+export class JSONRPCClientWithAuthentication<
+  ClientParams = void,
+> extends JSONRPCClient<ClientParams> {
   /**
    * Holds the current request ID. This number is incremented for each new request.
    */
@@ -52,19 +54,31 @@ export class JSONRPCClientWithAuthentication<ClientParams = void> extends JSONRP
   /**
    * @param password - The password to authenticate with.
    */
-  constructor(send: SendRequest<ClientParams>, protected password?: string) {
+  constructor(
+    send: SendRequest<ClientParams>,
+    protected password?: string
+  ) {
     super(send);
   }
 
-  requestAdvanced(request: JSONRPCRequest, clientParams?: ClientParams): PromiseLike<JSONRPCResponse>;
-  requestAdvanced(requests: JSONRPCRequest[], clientParams?: ClientParams): PromiseLike<JSONRPCResponse[]>;
+  requestAdvanced(
+    request: JSONRPCRequest,
+    clientParams: ClientParams
+  ): PromiseLike<JSONRPCResponse>;
+  requestAdvanced(
+    requests: JSONRPCRequest[],
+    clientParams: ClientParams
+  ): PromiseLike<JSONRPCResponse[]>;
   requestAdvanced(
     requests: JSONRPCRequest | JSONRPCRequest[],
-    clientParams?: ClientParams,
+    clientParams: ClientParams
   ): PromiseLike<JSONRPCResponse | JSONRPCResponse[]> {
     // call requestWithAuthentication() for each request
-    const promises: Promise<JSONRPCResponse>[] = (Array.isArray(requests) ? requests : [requests]).map(
-      (r: JSONRPCRequest): Promise<JSONRPCResponse> => this.requestWithAuthentication(r, clientParams),
+    const promises: Promise<JSONRPCResponse>[] = (
+      Array.isArray(requests) ? requests : [requests]
+    ).map(
+      (r: JSONRPCRequest): Promise<JSONRPCResponse> =>
+        this.requestWithAuthentication(r, clientParams)
     );
 
     return Array.isArray(requests) ? Promise.all(promises) : promises[0];
@@ -74,7 +88,10 @@ export class JSONRPCClientWithAuthentication<ClientParams = void> extends JSONRP
    * Handles 401 errors by parsing the authentication challenge, generating an authentication response
    * and supplying that response with each subsequent request.
    */
-  protected async requestWithAuthentication(request: JSONRPCRequest, clientParams?: ClientParams): Promise<JSONRPCResponse> {
+  protected async requestWithAuthentication(
+    request: JSONRPCRequest,
+    clientParams: ClientParams
+  ): Promise<JSONRPCResponse> {
     // construct a request object with autentication parameters
     const req: JSONRPCRequestWithAuth = { auth: this.auth, ...request };
 
@@ -87,11 +104,11 @@ export class JSONRPCClientWithAuthentication<ClientParams = void> extends JSONRP
       if (response.error.code === 401) {
         if (!this.password) {
           // abort authentication if we don't have a password
-          return Promise.reject(new Error('Unauthorized'));
+          return Promise.reject(new Error("Unauthorized"));
         } else if (req.auth) {
           // the request contained an authentication response but still fails with error 401, which means
           // we have the wrong password
-          return Promise.reject(new Error('Invalid password'));
+          return Promise.reject(new Error("Invalid password"));
         }
 
         try {
@@ -101,7 +118,10 @@ export class JSONRPCClientWithAuthentication<ClientParams = void> extends JSONRP
           this.auth = this.createAuthResponse(authParams);
         } catch (e) {
           // something went wrong
-          const error = new Error('Failed to setup authentication: ' + (e instanceof Error ? e.message : e));
+          const error = new Error(
+            "Failed to setup authentication: " +
+              (e instanceof Error ? e.message : e)
+          );
           if (e instanceof Error) {
             error.stack = e.stack;
           }
@@ -123,39 +143,40 @@ export class JSONRPCClientWithAuthentication<ClientParams = void> extends JSONRP
    * @param params - Authentication challenge params.
    */
   protected createAuthResponse(params: RpcAuthChallenge): RpcAuthResponse {
-    if (params.auth_type !== 'digest') {
+    if (params.auth_type !== "digest") {
       throw new Error(`Unsupported authentication type "${params.auth_type}"`);
     }
-    if (params.algorithm !== 'SHA-256') {
+    if (params.algorithm !== "SHA-256") {
       throw new Error(`Unsupported hash algorithm "${params.algorithm}"`);
     }
     if (!this.password) {
-      throw new Error('No password specified');
+      throw new Error("No password specified");
     }
 
     // create a function for generating SHA-256 hashes
-    const hash = (...parts: Array<string | number>) => crypto.createHash('sha256').update(parts.join(':')).digest('hex');
+    const hash = (...parts: Array<string | number>) =>
+      crypto.createHash("sha256").update(parts.join(":")).digest("hex");
 
     // generate a random number
     const cnonce = Math.round(Math.random() * 1000000);
 
     // construct the response
     const response = [
-      hash('admin', params.realm, this.password),
+      hash("admin", params.realm, this.password),
       params.nonce,
       params.nc || 1,
       cnonce,
-      'auth',
-      hash('dummy_method', 'dummy_uri'),
+      "auth",
+      hash("dummy_method", "dummy_uri"),
     ];
 
     return {
       realm: params.realm,
-      username: 'admin',
+      username: "admin",
       nonce: params.nonce,
       cnonce,
       response: hash(...response),
-      algorithm: 'SHA-256',
+      algorithm: "SHA-256",
     };
   }
 }
