@@ -1,18 +1,17 @@
-import { component, Device } from './base';
+import { component, Device } from "./base";
 import {
   BluetoothLowEnergy,
   Cloud,
-  Input,
   Mqtt,
   OutboundWebSocket,
   Script,
   WiFi,
   Pm1,
-} from '../components';
+} from "../components";
 
 export class ShellyPlusPmMini extends Device {
-  static readonly model: string = 'SNPM-001PCEU16';
-  static readonly modelName: string = 'Shelly Plus PM Mini';
+  static readonly model: string = "SNPM-001PCEU16";
+  static readonly modelName: string = "Shelly Plus PM Mini";
 
   @component
   readonly wifi = new WiFi(this);
@@ -30,10 +29,6 @@ export class ShellyPlusPmMini extends Device {
   readonly outboundWebSocket = new OutboundWebSocket(this);
 
   @component
-  readonly input0 = new Input(this, 0);
-
-
-  @component
   readonly script = new Script(this);
 
   @component
@@ -41,5 +36,3 @@ export class ShellyPlusPmMini extends Device {
 }
 
 Device.registerClass(ShellyPlusPmMini);
-
-
