@@ -36,3 +36,9 @@ export class ShellyPlusPmMini extends Device {
 }
 
 Device.registerClass(ShellyPlusPmMini);
+
+export class ShellyPlusPmMiniV3 extends ShellyPlusPmMini {
+  static readonly model: string = "S3PM-001PCEU16";
+}
+
+Device.registerClass(ShellyPlusPmMiniV3);
