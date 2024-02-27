@@ -1,6 +1,6 @@
 {
   "name": "shellies-ds9",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Handles communication with the next generation of Shelly devices",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
