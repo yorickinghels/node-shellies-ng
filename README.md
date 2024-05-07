@@ -8,21 +8,23 @@ For the first generation, see [node-shellies](https://github.com/alexryd/node-sh
 
 ## Supported devices
 
-* [Shelly Plus 1](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus1)
-* [Shelly Plus 1 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus1PM)
-* [Shelly Plus 1 Mini](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus1)
-* [Shelly Plus 1 PM Mini](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus1PM)
-* [Shelly Plus PM Mini](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlusPMMini)
-* [Shelly Plus 2 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlus2PM)
-* [Shelly Plus I4](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlusI4)
-* [Shelly Plus Plug US](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlugUS)
-* [Shelly Plus H&T](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPlusHT) <sup>1</sup>
-* [Shelly Pro 1](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPro1)
-* [Shelly Pro 1 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPro1PM)
-* [Shelly Pro 2](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPro2)
-* [Shelly Pro 2 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPro2PM)
-* [Shelly Pro 3](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPro3)
-* [Shelly Pro 4 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/ShellyPro4PM)
+* [Shelly Plus 1](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPlus1)
+* [Shelly Plus 1 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPlus1PM)
+* [Shelly Plus 1 Mini](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPlus1)
+* [Shelly Plus 1 PM Mini](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPlus1PM)
+* [Shelly Plus PM Mini](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPlusPMMini)
+* [Shelly Plus 2 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPlus2PM)
+* [Shelly Plus I4](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPlusI4)
+* [Shelly Plus Plug US](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPlugUS)
+* [Shelly Plus H&T](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPlusHT) <sup>1</sup>
+* [Shelly Pro 1](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPro1)
+* [Shelly Pro 1 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPro1PM)
+* [Shelly Pro 2](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPro2)
+* [Shelly Pro 2 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPro2PM)
+* [Shelly Pro 3](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPro3)
+* [Shelly Pro 4 PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyPro4PM)
+* [Shelly Pro Dimmer 1PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyProDimmer1PM)
+* [Shelly Pro Dimmer 2PM](https://shelly-api-docs.shelly.cloud/gen2/Devices/Gen2/ShellyProDimmer2PM)
 
 <sup>1</sup> Support for outbound websockets is a work in progress.
 
