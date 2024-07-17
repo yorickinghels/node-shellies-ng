@@ -49,12 +49,20 @@ Device.registerClass(ShellyPlus1PmUl);
 
 export class ShellyPlus1PmMini extends ShellyPlus1Pm {
   static readonly model: string = "SNSW-001P8EU";
+  static readonly modelName: string = "Shelly Plus 1 PM Mini";
 }
 
 Device.registerClass(ShellyPlus1PmMini);
 
 export class ShellyPlus1PmMiniV3 extends ShellyPlus1Pm {
   static readonly model: string = "S3SW-001P8EU";
+  static readonly modelName: string = "Shelly Plus 1 PM Mini";
 }
 
 Device.registerClass(ShellyPlus1PmMiniV3);
+
+export class ShellyPlus1PmV3 extends ShellyPlus1Pm {
+  static readonly model: string = "S3SW-001P16EU";
+}
+
+Device.registerClass(ShellyPlus1PmV3);
