@@ -51,3 +51,9 @@ export class ShellyPlusDimmer extends Device {
 }
 
 Device.registerClass(ShellyPlusDimmer);
+
+export class ShellyPlusDimmerO extends ShellyPlusDimmer {
+  static readonly model: string = "SNDM-0010OWW";
+}
+
+Device.registerClass(ShellyPlusDimmer);
