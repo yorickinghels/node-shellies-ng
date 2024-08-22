@@ -7,7 +7,6 @@ import {
   Mqtt,
   OutboundWebSocket,
   Script,
-  Switch,
   WiFi,
 } from '../components';
 
