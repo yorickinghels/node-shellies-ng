@@ -49,25 +49,7 @@ export class ShellyProDualCoverPm extends MultiProfileDevice {
   readonly input3 = new Input(this, 3);
 
   @component
-  readonly switch0 = new Switch(this, 0);
-
-  @component
-  readonly switch1 = new Switch(this, 1);
-
-  @component
-  readonly switch2 = new Switch(this, 2);
-
-  @component
-  readonly switch3 = new Switch(this, 3);
-
-  @component
   readonly script = new Script(this);
 }
 
 Device.registerClass(ShellyProDualCoverPm);
-
-export class ShellyProDualCoverPmRev1 extends ShellyProDualCoverPm {
-  static readonly model: string = 'SPSH-002PE16EU';
-}
-
-Device.registerClass(ShellyProDualCoverPmRev1);
